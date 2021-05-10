@@ -7,7 +7,8 @@ import {BloodNeeded} from '../screens/bloodNeeded';
 import {Informations} from '../screens/informations';
 import {BloodDonatingProcess} from '../screens/bloodDonatingProcess';
 import {SignUp} from '../screens/signUp';
-export const Content = styled.div`
+
+export const StyledMain = styled.div`
     width: calc(100vw-100px);
     min-height: 100vh;
     background-color:white;
@@ -18,15 +19,15 @@ export const Content = styled.div`
     align-items:center;
 `;
 
-interface mainProps{
+interface Props{
     isDarkColor: boolean;
 }
 
-export default function Main(props: mainProps){
+export const Main: React.FC<Props> = (props: Props) => {
     const color =  props.isDarkColor===false?"white":"black";
     const fontcolor =  props.isDarkColor===false?"black":"white";
     return(
-        <Content style={{backgroundColor:color,color:fontcolor}}>
+        <StyledMain style={{backgroundColor:color,color:fontcolor}}>
             <Switch>
                 <Route path="/homepage" component={HomePage} exact/>  
                 <Route path="/contact" component={Contact} exact/>
@@ -35,7 +36,9 @@ export default function Main(props: mainProps){
                 <Route path="/bloodDonatingProcess" component={BloodDonatingProcess} exact/>
                 <Route path="/signUp" component={SignUp} exact/>
             </Switch>
-        </Content>
+        </StyledMain>
     
     );
 }
+
+
