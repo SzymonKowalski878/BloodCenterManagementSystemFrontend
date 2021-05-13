@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const PageContainer = styled.div`
     width:12rem;
-    height: 20rem;
+    height: 20.8rem;
     display:flex;
     flex-direction: column;
     border-radius:19px;
@@ -43,7 +43,7 @@ export const HeaderConstainer = styled.div`
     width:12rem;
     position:absolute;
     top:1rem;
-    left:1rem;
+    left:0.3rem;
     display:flex;
     flex-direction:column;
 `;
@@ -60,7 +60,7 @@ export const HeaderText = styled.h2`
 export const SmallText = styled.h5`
     color:#fff;
     font-weight:400;
-    font-size:0.4rem;
+    font-size:0.7rem;
     z-index:10;
     margin:0;
     margin-top:0.1rem;

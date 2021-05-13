@@ -36,8 +36,6 @@ export const RegisterAccount = () =>{
                 <BackDrop/>
             </TopContainer>
             <HeaderConstainer>
-                    <HeaderText>Załóż</HeaderText>
-                    <HeaderText>konto</HeaderText>
                     <SmallText>Stwórz konto, aby kontynuować</SmallText>
                 </HeaderConstainer>
             <FormContainer>

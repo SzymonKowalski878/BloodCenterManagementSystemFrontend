@@ -42,6 +42,8 @@ export const Login:React.FC =() =>{
                 const tokenData= decoded as TokenInterface;
                 console.log(tokenData.unique_name+" " +tokenData.Role);
                 localStorage.setItem("jwt",JSON.stringify(token));
+                localStorage.setItem("Role",tokenData.Role);
+                localStorage.setItem("UserId",tokenData.unique_name);
             }
         }
     )
@@ -56,7 +58,6 @@ export const Login:React.FC =() =>{
                     <BackDrop />
                 </TopContainer>
                 <HeaderConstainer>
-                        <HeaderText>Witaj</HeaderText>
                         <SmallText>Zaloguj się, aby kontynuować</SmallText>
                     </HeaderConstainer>
                 <FormContainer>
