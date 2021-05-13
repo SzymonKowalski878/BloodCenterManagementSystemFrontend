@@ -71,6 +71,7 @@ const NavLinks = styled.ul`
     justify-content: flex-end;
     list-style: none;
     width: 75%;
+    z-index:12;
     >a{
         text-decoration: none;
         margin-right: 1rem;
