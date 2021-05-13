@@ -3,7 +3,8 @@ import { useMutation } from 'react-query';
 import {userApi} from '../api'
 import jwt_decode from 'jwt-decode'
 import {TokenInterface} from '../interface/tokenInterface'
-
+import { BoxContainer, TopContainer, BackDrop, FormContainer, Input, Span, SubmitButton,HeaderConstainer, HeaderText, SmallText } from './common';
+import { Link } from 'react-router-dom';
 export const Login:React.FC =() =>{
 
     const [idState,setIdState] = React.useState("");
@@ -49,10 +50,22 @@ export const Login:React.FC =() =>{
         mutation.mutate();
     }
     return (
-        <>
-            <input type="text" value={idState} placeholder="id" onChange={onIdChange} id="idInput"></input><br/>
-            <input type="password" value={passwordState} placeholder="password" onChange={onPasswordChange} id="passwordInput"></input><br/>
-            <button onClick={onSubmit}>Zaloguj</button>
-        </>
+        
+            <BoxContainer>
+                <TopContainer>
+                    <BackDrop />
+                </TopContainer>
+                <HeaderConstainer>
+                        <HeaderText>Witaj</HeaderText>
+                        <SmallText>Zaloguj się, aby kontynuować</SmallText>
+                    </HeaderConstainer>
+                <FormContainer>
+                    <Input type="text" placeholder="ID" value={idState} onChange={onIdChange} id="idInput"/>
+                    <Input type="password" placeholder="Password" value={passwordState} onChange={onIdChange} id="passwordInput"/>
+                </FormContainer>
+                    <SubmitButton type="submit" onClick={()=>onSubmit()}>Zaloguj się</SubmitButton>
+                    <Span>Nie masz konta? <Link to="/signUp" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Zarejestruj się!</Link> </Span>         
+            </BoxContainer>
+        
     )
 }

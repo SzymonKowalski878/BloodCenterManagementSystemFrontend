@@ -21,6 +21,6 @@ export const MenuItems = [
     },
     {
         title:'Zaloguj się',
-        url:'/signUp'
+        url:'/signIn'
     },
 ]

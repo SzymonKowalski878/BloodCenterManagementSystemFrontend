@@ -1,11 +1,10 @@
 import React from 'react';
-import {Login} from '../components/login';
-import {RegisterDonator} from '../components/registerDonator';
-import {ReturnBloodTypes} from '../components/returnBloodTypes';
+import {RegisterAccount} from '../components/registerAccount';
+
 export const SignUp = () =>{
     return (
         <>
-            <Login/>
+            <RegisterAccount/>
         </>
     )
 }

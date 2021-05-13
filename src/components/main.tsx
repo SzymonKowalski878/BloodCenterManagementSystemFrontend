@@ -7,6 +7,7 @@ import {BloodNeeded} from '../screens/bloodNeeded';
 import {Informations} from '../screens/informations';
 import {BloodDonatingProcess} from '../screens/bloodDonatingProcess';
 import {SignUp} from '../screens/signUp';
+import { SignIn } from '../screens/signIn';
 
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
@@ -35,6 +36,7 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <Route path="/informations" component={Informations} exact/>
                 <Route path="/bloodDonatingProcess" component={BloodDonatingProcess} exact/>
                 <Route path="/signUp" component={SignUp} exact/>
+                <Route path="/signIn" component={SignIn} exact/>
             </Switch>
         </StyledMain>
     

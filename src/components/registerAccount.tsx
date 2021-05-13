@@ -1,6 +1,8 @@
 import React, { useState,ChangeEvent } from 'react';
 import { useMutation } from 'react-query';
 import {userApi} from '../api'
+import { Link } from 'react-router-dom';
+import { BoxContainer, TopContainer, BackDrop, FormContainer, Input, Span, SubmitButton, HeaderConstainer, HeaderText, SmallText } from './common';
 
 export const RegisterAccount = () =>{
     //Żeby móc zarejestrować nowe konto to w bazie musi istnieć dawca, który ma jakiś email
@@ -29,10 +31,22 @@ export const RegisterAccount = () =>{
     }
 
     return (
-        <>
-            <input type="text" value={emailState} placeholder="Email" onChange={onEmailChange} id="idInput"></input><br/>
-            <input type="password" value={passwordState} placeholder="Password" onChange={onPasswordChange} id="passwordInput"></input><br/>
-            <button onClick={onSubmit}>Zarejestruj</button>
-        </>
+        <BoxContainer>
+            <TopContainer>
+                <BackDrop/>
+            </TopContainer>
+            <HeaderConstainer>
+                    <HeaderText>Załóż</HeaderText>
+                    <HeaderText>konto</HeaderText>
+                    <SmallText>Stwórz konto, aby kontynuować</SmallText>
+                </HeaderConstainer>
+            <FormContainer>
+                <Input type="email" placeholder="Email"/>
+                <Input type="password" placeholder="Password"/>
+                <Input type="password" placeholder="Confirm Password"/>
+            </FormContainer>
+            <SubmitButton>Zapisz się</SubmitButton>
+            <Span>Wróć do <Link to="/signIn" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Logowania</Link></Span>
+        </BoxContainer>
     )
 }

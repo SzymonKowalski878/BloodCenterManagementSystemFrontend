@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-
+import {ReturnBloodTypes} from '../components/returnBloodTypes';
 //import stanBardzoNiski from 'url:../images/stanBardzoNiski.png';
 //import stanNiski from 'url:../images/stanNiski.png';
 //import stanSredni from 'url:../images/stanSredni.png';
@@ -17,21 +17,6 @@ const Article = styled.div`
     };
 `;
 
-
-const BloodIconsContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-`;
-
-const BloodTypeNeededElement = styled.div`
-    align-items: center;
-    max-width: calc(35% - 20px);
-    margin: 10px;
-    padding: 10px 15px;
-    font-weight: bold;
-
-`;
 
 const Legend = styled.div`
     display: flex; 
@@ -53,67 +38,28 @@ export const BloodNeeded: React.FC = () => {
         <Article>
             <h2>Zapotrzebowanie na krew</h2>
             <p><b>Stan na dzień 21.04.2021</b></p>
-            <BloodIconsContainer>
-                <BloodTypeNeededElement>    
-                    <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>0 Rh-</p>
-                </BloodTypeNeededElement>
-
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>0 Rh+</p>
-                </BloodTypeNeededElement>
-
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>AB Rh-</p>
-                </BloodTypeNeededElement>
-
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>AB Rh+</p>
-                </BloodTypeNeededElement>
-
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>B Rh-</p>
-                </BloodTypeNeededElement>
-
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>B Rh+</p>
-                </BloodTypeNeededElement>
-                
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>A Rh+</p>
-                </BloodTypeNeededElement>
-                
-                <BloodTypeNeededElement>
-                <img src='https://picsum.photos/seed/picsum/200/300' width="40px" height="40px"/>
-                    <p>A Rh+</p>
-                </BloodTypeNeededElement>
-            </BloodIconsContainer>
+            
+            <ReturnBloodTypes/>
             
             <p>Stan zapasów - Legenda</p>
             <Legend>
                 <LegendItem>
-                    <img src='https://picsum.photos/seed/picsum/200/300' width="20px" height="20px"/>
+                    <img src='https://i.imgur.com/l7rAJeL.png' width="40px" height="40px"/>
                     <p>Bardzo niski</p>
                 </LegendItem>
                 
                 <LegendItem>
-                    <img src='https://picsum.photos/seed/picsum/200/300' width="20px" height="20px"/>
+                    <img src='https://i.imgur.com/DU6TJ4D.png' width="40px" height="40px"/>
                     <p>Niski</p>
                 </LegendItem>
 
                 <LegendItem>
-                    <img src='https://picsum.photos/seed/picsum/200/300' width="20px" height="20px"/>
+                    <img src='https://i.imgur.com/AZ0HDeh.png' width="40px" height="40px"/>
                     <p>Średni</p>
                 </LegendItem>
 
                 <LegendItem>
-                    <img src='https://picsum.photos/seed/picsum/200/300' width="20px" height="20px"/>
+                    <img src='https://i.imgur.com/KEEiUE9.png' width="40px" height="40px"/>
                     <p>Wysoki</p>
                 </LegendItem>
             </Legend>

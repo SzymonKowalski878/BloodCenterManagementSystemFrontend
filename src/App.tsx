@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import styled from '@emotion/styled';
 import Header from './components/header';
-import Main from './components/main';
+import {Main} from './components/main';
 import {Footer} from './components/footer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 const Content = styled.div`
