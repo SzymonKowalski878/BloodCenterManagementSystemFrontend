@@ -13,7 +13,7 @@ const Container = styled.div`
     }
 `;
 
-const ChooseOffice = styled.div`
+const ChooseOption = styled.div`
     display:flex;
     justify-content:center;
     align-items: flex-start;
@@ -21,14 +21,14 @@ const ChooseOffice = styled.div`
     top:4em;
 `;
 
-const OfficeContainer = styled.div`
+const PanelOptions = styled.div`
     display:flex;
     flex-direction: row;
     height:5em;   
     position:relative;
     top:5em;
     min-width:47em;
-    justify-content:flex-start;
+    justify-content:center;
     align-items:center;
     @media only screen and (max-width: 1308px) {
         flex-direction:column;
@@ -46,7 +46,7 @@ const OfficeContainer = styled.div`
     }
 `;
 
-const OfficePosition = styled.div`
+const Option = styled.div`
     display:flex;
     align-items:center;
     justify-content:center;
@@ -66,25 +66,15 @@ const OfficePosition = styled.div`
         width:14em;
     }
 `;
-export const WorkerMain =()=>{
 
-    //const role = localStorage.getItem("Role");
-    const role = "Worker"
-    return (
+export const DonatorMain= () => {
+    return(
         <Container>
-            {role=="Worker"?(
-                <>
-                    <ChooseOffice>Wybierz stanowisko</ChooseOffice>
-                    <OfficeContainer>
-                        <OfficePosition>Recepcja</OfficePosition>
-                        <OfficePosition>Stanowisko badania krwi</OfficePosition>
-                        <OfficePosition>Stanowisko lekarza</OfficePosition>
-                        <OfficePosition>Stanowisko pobrania krwi</OfficePosition>
-                    </OfficeContainer>
-                </>
-            ):(
-                <></>
-            )}
+            <ChooseOption>Panel Użytkownika</ChooseOption>
+            <PanelOptions>
+                <Option>Ustawienia konta</Option>
+                <Option>Historia donacji</Option>
+            </PanelOptions>
         </Container>
     )
-}
+};

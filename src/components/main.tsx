@@ -9,6 +9,8 @@ import {BloodDonatingProcess} from '../screens/bloodDonatingProcess';
 import {SignUp} from '../screens/signUp';
 import { SignIn } from '../screens/signIn';
 import WorkerHomePage from '../screens/loggedInWorker/workerHomePage';
+import DonatorHomePage from '../screens/loggedInDonator/donatorHomePage';
+
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
     min-height: 100vh;
@@ -24,13 +26,45 @@ interface Props{
     isDarkColor: boolean;
 }
 
+function CheckIfLoggedIn(str:string | null){
+    if(!str){
+        console.log("Null")
+        return false;
+    }
+    if(str?.length===0){
+        console.log("Dlugosc")
+        return false;
+    }
+    if(str==="true"){
+        console.log(str);
+        return true;
+        
+    }
+    console.log("inne");
+    return false;
+}
+
 export const Main: React.FC<Props> = (props: Props) => {
     const color =  props.isDarkColor===false?"white":"black";
     const fontcolor =  props.isDarkColor===false?"black":"white";
+    const role = localStorage.getItem("Role");
+    const isLoggedIn= localStorage.getItem("IsLoggedIn");
     return(
         <StyledMain style={{backgroundColor:color,color:fontcolor}}>
             <Switch>
-                <Route path="/homepage" component={WorkerHomePage} exact/>  
+                {CheckIfLoggedIn(isLoggedIn) ?(
+                    role==="Worker"?(
+                        <Route path="/homePage" component={WorkerHomePage} exact/>
+                    ):role=="Donator"?(
+                        <Route path="/homePage" component={DonatorHomePage} exact/>
+                    ):(
+                        <Route path="/homePage" component={HomePage} exact/>
+                    )
+                    
+                ):(
+                    <Route path="/homePage" component={HomePage} exact/>
+                )}
+                
                 <Route path="/contact" component={Contact} exact/>
                 <Route path="/bloodNeeded" component={BloodNeeded} exact/>
                 <Route path="/informations" component={Informations} exact/>

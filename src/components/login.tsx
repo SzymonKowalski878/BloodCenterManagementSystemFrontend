@@ -4,7 +4,7 @@ import {userApi} from '../api'
 import jwt_decode from 'jwt-decode'
 import {TokenInterface} from '../interface/tokenInterface'
 import { BoxContainer, TopContainer, BackDrop, FormContainer, Input, Span, SubmitButton,HeaderConstainer, HeaderText, SmallText } from './common';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 export const Login:React.FC =() =>{
 
     const [idState,setIdState] = React.useState("");
@@ -44,6 +44,8 @@ export const Login:React.FC =() =>{
                 localStorage.setItem("jwt",JSON.stringify(token));
                 localStorage.setItem("Role",tokenData.Role);
                 localStorage.setItem("UserId",tokenData.unique_name);
+                localStorage.setItem("IsLoggedIn","true");
+                    
             }
         }
     )
@@ -62,10 +64,21 @@ export const Login:React.FC =() =>{
                     </HeaderConstainer>
                 <FormContainer>
                     <Input type="text" placeholder="Numer legitymacji" value={idState} onChange={onIdChange} id="idInput"/>
-                    <Input type="password" placeholder="Hasło" value={passwordState} onChange={onIdChange} id="passwordInput"/>
+                    <Input type="password" placeholder="Hasło" value={passwordState} onChange={onPasswordChange} id="passwordInput"/>
                 </FormContainer>
                     <SubmitButton type="submit" onClick={()=>onSubmit()}>Zaloguj się</SubmitButton>
-                    <Span>Nie masz konta? <Link to="/signUp" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Zarejestruj się!</Link> </Span>         
+                    <Span>Nie masz konta? <Link to="/signUp" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Zarejestruj się!</Link> </Span>
+                {mutation.isSuccess?(
+                    <>
+                        {
+                            window.location.href="/homepage"
+                        }
+                    </>
+                ):(
+                    <>
+
+                    </>
+                )}  
             </BoxContainer>
         
     )
