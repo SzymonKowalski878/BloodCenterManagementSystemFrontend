@@ -8,7 +8,7 @@ import {Informations} from '../screens/informations';
 import {BloodDonatingProcess} from '../screens/bloodDonatingProcess';
 import {SignUp} from '../screens/signUp';
 import { SignIn } from '../screens/signIn';
-
+import WorkerHomePage from '../screens/loggedInWorker/workerHomePage';
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
     min-height: 100vh;
@@ -30,7 +30,7 @@ export const Main: React.FC<Props> = (props: Props) => {
     return(
         <StyledMain style={{backgroundColor:color,color:fontcolor}}>
             <Switch>
-                <Route path="/homepage" component={HomePage} exact/>  
+                <Route path="/homepage" component={WorkerHomePage} exact/>  
                 <Route path="/contact" component={Contact} exact/>
                 <Route path="/bloodNeeded" component={BloodNeeded} exact/>
                 <Route path="/informations" component={Informations} exact/>

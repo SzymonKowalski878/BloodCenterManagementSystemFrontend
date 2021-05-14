@@ -61,8 +61,8 @@ export const Login:React.FC =() =>{
                         <SmallText>Zaloguj się, aby kontynuować</SmallText>
                     </HeaderConstainer>
                 <FormContainer>
-                    <Input type="text" placeholder="ID" value={idState} onChange={onIdChange} id="idInput"/>
-                    <Input type="password" placeholder="Password" value={passwordState} onChange={onIdChange} id="passwordInput"/>
+                    <Input type="text" placeholder="Numer legitymacji" value={idState} onChange={onIdChange} id="idInput"/>
+                    <Input type="password" placeholder="Hasło" value={passwordState} onChange={onIdChange} id="passwordInput"/>
                 </FormContainer>
                     <SubmitButton type="submit" onClick={()=>onSubmit()}>Zaloguj się</SubmitButton>
                     <Span>Nie masz konta? <Link to="/signUp" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Zarejestruj się!</Link> </Span>         

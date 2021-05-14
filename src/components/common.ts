@@ -5,7 +5,7 @@ export const PageContainer = styled.div`
     height: 20.8em;
     display:flex;
     flex-direction: column;
-    border-radius:19px;
+    border-radius:1em;
     background-color:#fff;
     box-shadow: 0 0 2px rgba(15,15,15,0.28);
     position:relative;
@@ -18,9 +18,8 @@ export const TopContainer = styled.div`
     height:1em;
     display:flex;
     flex-direction:column;
-    justify-content:flex-end;
-    padding:0 1.8em;
-    padding-bottom:5em;
+    justify-content: center;
+    padding-bottom:7em;
 `;
 
 export const BackDrop = styled.div`
@@ -62,7 +61,6 @@ export const SmallText = styled.h5`
     font-weight:400;
     font-size:0.7em;
     z-index:10;
-    margin:0;
     margin-top:0.1em;
 `;
 

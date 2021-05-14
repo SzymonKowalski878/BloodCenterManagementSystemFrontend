@@ -40,10 +40,10 @@ export const RegisterAccount = () =>{
                 </HeaderConstainer>
             <FormContainer>
                 <Input type="email" placeholder="Email"/>
-                <Input type="password" placeholder="Password"/>
-                <Input type="password" placeholder="Confirm Password"/>
+                <Input type="password" placeholder="Hasło"/>
+                <Input type="password" placeholder="Potwierdź hasło"/>
             </FormContainer>
-            <SubmitButton>Zapisz się</SubmitButton>
+            <SubmitButton onClick={onSubmit}>Zapisz się</SubmitButton>
             <Span>Wróć do <Link to="/signIn" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Logowania</Link></Span>
         </BoxContainer>
     )
