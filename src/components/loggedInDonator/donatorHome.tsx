@@ -74,11 +74,15 @@ export const DonatorMain= () => {
         window.location.href="/donatorHistory";
     }
 
+    const HandleAccountSettings =() =>{
+        window.location.href="/accountSettings"
+    }
+
     return(
         <Container>
             <ChooseOption>Panel Użytkownika</ChooseOption>
             <PanelOptions>
-                <Option>Ustawienia konta</Option>
+                <Option onClick={()=>HandleAccountSettings()}>Ustawienia konta</Option>
                 <Option onClick={()=>HandleHistory()}>Historia donacji</Option>
             </PanelOptions>
         </Container>

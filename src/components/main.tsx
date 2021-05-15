@@ -11,6 +11,8 @@ import { SignIn } from '../screens/signIn';
 import WorkerHomePage from '../screens/loggedInWorker/workerHomePage';
 import DonatorHomePage from '../screens/loggedInDonator/donatorHomePage';
 import { ReturnDonatorHistory } from './ReturnDonatorHistory';
+import { AccountSettings } from '../screens/loggedInDonator/AccountSettings';
+import { ChangePassword } from './ChangePassword';
 
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
@@ -73,6 +75,8 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <Route path="/signUp" component={SignUp} exact/>
                 <Route path="/signIn" component={SignIn} exact/>
                 <Route path="/donatorHistory" component={ReturnDonatorHistory}/>
+                <Route path="/accountSettings" component={AccountSettings}/>
+                <Route path="/accountSettings/changePassword" component={ChangePassword}/>
             </Switch>
         </StyledMain>
     
