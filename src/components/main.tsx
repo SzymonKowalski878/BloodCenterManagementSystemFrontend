@@ -78,5 +78,3 @@ export const Main: React.FC<Props> = (props: Props) => {
     
     );
 }
-
-

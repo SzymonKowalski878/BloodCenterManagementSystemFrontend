@@ -2,8 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
-    min-height: 100vh;
-    background-color:white;
+    
     max-width:48em;
     @media only screen and (max-width: 414px) {
         width:4em;
@@ -18,7 +17,7 @@ const ChooseOption = styled.div`
     justify-content:center;
     align-items: flex-start;
     position:relative;
-    top:4em;
+    top:-5em;
 `;
 
 const PanelOptions = styled.div`
@@ -26,7 +25,7 @@ const PanelOptions = styled.div`
     flex-direction: row;
     height:5em;   
     position:relative;
-    top:5em;
+    top:-4em;
     min-width:47em;
     justify-content:center;
     align-items:center;

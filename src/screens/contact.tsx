@@ -10,6 +10,7 @@ const Article = styled.div`
     text-align: center;
     iframe {
         width:90vw;
+        height:50vh;
     }
     h2 {
         color: #ff2003;

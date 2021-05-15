@@ -3,9 +3,9 @@ import React from 'react';
 
 const Article = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
     justify-content:center;
-    align-items:center;
+    text-align:center;
     margin:0 2vw;
     margin-bottom:2.5em;
     h2 {
@@ -15,7 +15,10 @@ const Article = styled.div`
     }
     h3 {
         font-weight: bold;
-        font-size: 1.8em;
+        font-size: 1.8em;  
+    }
+    ol{
+        list-style-position:inside;
     }
     @media only screen and (max-width: 375px) {
         justify-content:flex-start;
