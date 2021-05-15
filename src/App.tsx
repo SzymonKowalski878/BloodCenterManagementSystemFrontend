@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import styled from '@emotion/styled';
-import Header from './components/header';
+import Header from './components/Header';
 import {Main} from './components/main';
 import {Footer} from './components/footer';
 import { QueryClient, QueryClientProvider } from 'react-query';
