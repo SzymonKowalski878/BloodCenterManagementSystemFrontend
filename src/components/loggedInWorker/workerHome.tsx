@@ -48,6 +48,7 @@ const OfficeContainer = styled.div`
 
 const OfficePosition = styled.div`
     display:flex;
+    cursor:pointer;
     align-items:center;
     justify-content:center;
     height:5em;

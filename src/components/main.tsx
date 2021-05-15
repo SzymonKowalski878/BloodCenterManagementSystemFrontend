@@ -10,6 +10,7 @@ import {SignUp} from '../screens/signUp';
 import { SignIn } from '../screens/signIn';
 import WorkerHomePage from '../screens/loggedInWorker/workerHomePage';
 import DonatorHomePage from '../screens/loggedInDonator/donatorHomePage';
+import { ReturnDonatorHistory } from './ReturnDonatorHistory';
 
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
@@ -71,6 +72,7 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <Route path="/bloodDonatingProcess" component={BloodDonatingProcess} exact/>
                 <Route path="/signUp" component={SignUp} exact/>
                 <Route path="/signIn" component={SignIn} exact/>
+                <Route path="/donatorHistory" component={ReturnDonatorHistory}/>
             </Switch>
         </StyledMain>
     
