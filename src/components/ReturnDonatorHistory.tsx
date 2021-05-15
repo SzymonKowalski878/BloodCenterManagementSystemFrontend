@@ -24,7 +24,11 @@ export const ReturnDonatorHistory:React.FC = () =>{
     return (
         <>
             {query.isSuccess?(
-                <h1>Halo</h1>
+                <>
+                    {query.data.map((donation)=>{
+                        return <> {`Donacja z dnia ${donation.donationDate?.getMonth()+1}, status ${donation.stage} `}<br/></>
+                    })}
+                </>
             ):(
                 <h1>Nie</h1>
             )}
