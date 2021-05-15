@@ -48,6 +48,7 @@ const PanelOptions = styled.div`
 
 const Option = styled.div`
     display:flex;
+    cursor:pointer;
     align-items:center;
     justify-content:center;
     height:5em;
@@ -68,12 +69,17 @@ const Option = styled.div`
 `;
 
 export const DonatorMain= () => {
+
+    const HandleHistory = ()=>{
+        window.location.href="/donatorHistory";
+    }
+
     return(
         <Container>
             <ChooseOption>Panel Użytkownika</ChooseOption>
             <PanelOptions>
                 <Option>Ustawienia konta</Option>
-                <Option>Historia donacji</Option>
+                <Option onClick={()=>HandleHistory()}>Historia donacji</Option>
             </PanelOptions>
         </Container>
     )
