@@ -4,71 +4,63 @@ import React from 'react';
 //import phoneIkon from 'url:../images/phoneIkon.webp';
 
 const Article = styled.div`
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
     text-align: center;
     h2 {
         color: red;
-        
-        padding: 10px;
-    };
+    }
     p{
         text-align: center;
-        padding: 5px;
-    }
+    };
+`
 
-`;
-
-const InformationItem = styled.div`
-    background: #fcfcff;
+const VaccineInformation = styled.div`
     text-align: left;
-    padding: 20px;
-    margin: 10px;
-`;
-
+    margin: 0 2vw 0 2vw;
+`
 
 const DepartureTable = styled.table`
+    margin-bottom:2.5em;
     width: 100%;
     tr:nth-child(even) {background-color: #fcfcff;};
     tr:hover {background-color: #fcfcff;};
     th, td {
-        padding: 15px;
+        padding: 0.2em;
         border-bottom: 1px solid #ddd;
     }
 `
-
-
 
 export const Informations: React.FC = () =>{
     return(
         <Article>
             <h2>Godziny Rejestracji</h2>
-                <InformationItem>
-                    Krew pełna:<br/>
-                    Pn-Pt 7.00 - 17.30<br/><br/>
-                    Płytki Krwi:<br/>
-                    Pn-Pt 7.00 - 12.00<br/><br/>
-                    Osocze:<br/>
-                    Pn-Pt 7.00 - 16.00<br/>
-                    Sobota 7.30-11.00
-                </InformationItem>
-
+                Krew pełna:<br/>
+                Pn-Pt 7.00 - 17.30<br/><br/>
+                Płytki Krwi:<br/>
+                Pn-Pt 7.00 - 12.00<br/><br/>
+                Osocze:<br/>
+                Pn-Pt 7.00 - 16.00<br/>
+                Sobota 7.30-11.00
+                
                 <h2>Szczepionka przeciwko COVID-19 a oddawanie krwi</h2>
-                <InformationItem>
+                <VaccineInformation>
                     <ul>
                         <li>szczepionki Pfizer oraz Moderna:</li>
                         po szczepieniu - można zgłosić się do oddania krwi 
                         lub jej składników najwcześniej po <b>48 godzinach</b> od szczepienia
-                        <li>szczepionki Astra Zeneca, Johnson&Johnson:</li>
+                        <li>szczepionki Astra Zeneca, Johnson&amp;Johnson:</li>
                         po szczepieniu - można zgłosić się do oddania krwi 
                         lub jej składników najwcześniej po <b>14 dniach</b> od szczepienia.
                     </ul>
                     <p>
-                        W przypadku wystąpienia jakichkolwiek objawów po szczepieniumożna
+                        W przypadku wystąpienia jakichkolwiek objawów po szczepieniu można
                          zgłosić się do oddania krwi lub jej składników najwcześniej po <b>7 dniach</b> od 
                          ustąpienia objawów.
                     </p>
 
-                </InformationItem>
+                </VaccineInformation>
 
                 <h2>Akcje wyjazdowe</h2>
                 <DepartureTable>

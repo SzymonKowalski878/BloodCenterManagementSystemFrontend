@@ -2,31 +2,39 @@ import styled from '@emotion/styled';
 import React from 'react';
 
 const Article = styled.div`
-    padding: 50px;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    margin:0 2vw;
+    margin-bottom:2.5em;
     h2 {
         color: #ff2003;
-        font-size: 30px;
+        font-size: 2em;
         font-weight: bold;
-    };
+    }
     h3 {
         font-weight: bold;
-        font-size: 25px;
+        font-size: 1.8em;
+    }
+    @media only screen and (max-width: 375px) {
+        justify-content:flex-start;
+        text-align:left;
+        h3, h2{
+            text-align:center;
+        }
     }
 `;
-
-
-
 
 export const BloodDonatingProcess: React.FC = () => {
     return(
         <Article>
             <h2>
-                Proces oddawania krwi.
+                Proces oddawania krwi
             </h2>
             
             <h3>
-                Przed oddaniem krwi:
+                Przed oddaniem krwi
             </h3>
             <p>
             Zanim udasz się do centrum krwiodawstwa musisz pamiętać o kilku ważnych 
@@ -47,7 +55,7 @@ export const BloodDonatingProcess: React.FC = () => {
             </ol>
 
             <h3>
-                Oddawanie krwi krok po kroku:
+                Oddawanie krwi krok po kroku
             </h3>
 
             <ol>
@@ -61,7 +69,7 @@ export const BloodDonatingProcess: React.FC = () => {
             </ol>
 
             <h3>
-                Po oddaniu krwi:
+                Po oddaniu krwi
             </h3>
             
             <ol>
