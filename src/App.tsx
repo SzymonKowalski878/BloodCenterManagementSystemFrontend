@@ -19,6 +19,8 @@ const queryClient = new QueryClient();
 export const App: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
   const [fontSize, setFontSize] = useState(3);
+  const [isLogged, setIsLogged] = useState(false)
+
   const changeMode = () => {
     setIsDark(!isDark);
   }
@@ -29,7 +31,7 @@ export const App: React.FC = () => {
         <QueryClientProvider client={queryClient}>
             <Router>
               <Header isDarkColor={isDark} changeColor={changeMode} changeSize={changeSize} />
-              <Main isDarkColor={isDark}/>
+              <Main isDarkColor={isDark} isLogged={isLogged} />
               <Footer isDarkColor={isDark}/>
             </Router>
           </QueryClientProvider>

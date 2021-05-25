@@ -12,6 +12,8 @@ import WorkerHomePage from '../screens/loggedInWorker/workerHomePage';
 import DonatorHomePage from '../screens/loggedInDonator/donatorHomePage';
 import { ReturnDonatorHistory } from './ReturnDonatorHistory';
 import {DonationDetails} from '../screens/DonationDetails';
+import { PrivateRoute } from '../lib/PrivateRoute'
+import { LoginRoute } from '../lib/LoginRoute'
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
     min-height: 100vh;
@@ -24,7 +26,8 @@ export const StyledMain = styled.div`
 `;
 
 interface Props{
-    isDarkColor: boolean;
+    isDarkColor: boolean,
+    isLogged: boolean,
 }
 
 function CheckIfLoggedIn(str:string | null){
@@ -70,13 +73,13 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <Route path="/bloodNeeded" component={BloodNeeded} exact/>
                 <Route path="/informations" component={Informations} exact/>
                 <Route path="/bloodDonatingProcess" component={BloodDonatingProcess} exact/>
-                <Route path="/signUp" component={SignUp} exact/>
-                <Route path="/signIn" component={SignIn} exact/>
-                <Route path="/donatorHistory" component={ReturnDonatorHistory}/>
+                <LoginRoute path="/signUp" component={SignUp} exact />
+                <LoginRoute path="/signIn" component={SignIn} exact />
+                <PrivateRoute path="/donatorHistory" component={ReturnDonatorHistory} exact role='Donator'/>
                 <Route path="/homePage" component={HomePage} exact/>
-                <Route path="/homePageWorker" component={WorkerHomePage} exact/>
-                <Route path="/homePageDonator" component={DonatorHomePage} exact/>
-                <Route path="/donationDetails/:donationId" component={DonationDetails} exact/> 
+                <PrivateRoute path="/homePageWorker" component={WorkerHomePage} exact role='Worker'/>
+                <PrivateRoute path="/homePageDonator" component={DonatorHomePage} exact role='Donator'/>
+                <PrivateRoute path="/donationDetails/:donationId" component={DonationDetails} exact role='Donator'/> 
             </Switch>
         </StyledMain>
     

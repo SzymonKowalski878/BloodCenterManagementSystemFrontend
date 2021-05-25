@@ -160,7 +160,7 @@ const HamburgerMenu = styled.button`
 interface HeaderProps {
     isDarkColor: boolean,
     changeColor: ()=>void,
-    changeSize: (event: any)=>void
+    changeSize: (event: any)=>void,
 }
 
 const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
@@ -176,7 +176,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
                 <Navlogo>
                     RCKiK
                 </Navlogo>
-                <Controls> 
+                <Controls>
                     <Switch>
                         <Label>
                             <input type="checkbox" defaultChecked={props.isDarkColor} onChange={props.changeColor} />
@@ -190,13 +190,16 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
                 <NavLinks style={isOpen?{display: 'block'}:{}} onClick={() => {setIsOpen(false)}}>
                 {MenuItems.map((item, index) => {
                     return (
-                        <Link to={item.url}>
-                            <MenuItem>
-                                <li key={index}>
-                                    {item.title}
-                                </li>
-                            </MenuItem>
-                        </Link>
+                        (!localStorage.getItem("IsLoggedIn")&&item.role=="NotLogged")||localStorage.getItem("Role")==item.role||item.role=="None"?(
+                            <Link to={item.url}>
+                                <MenuItem>
+                                    <li key={index}>
+                                        {item.title}
+                                    </li>
+                                </MenuItem>
+                            </Link>
+                        ):""
+                       
                     )
                 })}
                 </NavLinks>

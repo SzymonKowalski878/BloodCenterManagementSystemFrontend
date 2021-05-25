@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 import { useMutation } from 'react-query';
 import {userApi} from '../api'
 import jwt_decode from 'jwt-decode'
@@ -9,6 +9,7 @@ import { queryHelpers } from '@testing-library/dom';
 export const Login:React.FC =() =>{
 
     const [idState,setIdState] = React.useState("");
+    const [isLogged, setIsLogged] = React.useState(false);
     const [passwordState,setPasswordState] = React.useState("");
 
     function checkIfParseInt(id:string){
@@ -46,7 +47,6 @@ export const Login:React.FC =() =>{
                 localStorage.setItem("Role",tokenData.Role);
                 localStorage.setItem("UserId",tokenData.unique_name);
                 localStorage.setItem("IsLoggedIn","true");
-                    
             }
         }
     )
