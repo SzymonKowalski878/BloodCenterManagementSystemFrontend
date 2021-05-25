@@ -11,7 +11,7 @@ import { SignIn } from '../screens/signIn';
 import WorkerHomePage from '../screens/loggedInWorker/workerHomePage';
 import DonatorHomePage from '../screens/loggedInDonator/donatorHomePage';
 import { ReturnDonatorHistory } from './ReturnDonatorHistory';
-
+import {DonationDetails} from '../screens/DonationDetails';
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
     min-height: 100vh;
@@ -53,9 +53,9 @@ export const Main: React.FC<Props> = (props: Props) => {
     return(
         <StyledMain style={{backgroundColor:color,color:fontcolor}}>
             <Switch>
-                {CheckIfLoggedIn(isLoggedIn) ?(
+                {/*CheckIfLoggedIn(isLoggedIn) ?(
                     role==="Worker"?(
-                        <Route path="/homePage" component={WorkerHomePage} exact/>
+                        <Route path="/homePageWorker" component={WorkerHomePage} exact/>
                     ):role=="Donator"?(
                         <Route path="/homePage" component={DonatorHomePage} exact/>
                     ):(
@@ -64,7 +64,7 @@ export const Main: React.FC<Props> = (props: Props) => {
                     
                 ):(
                     <Route path="/homePage" component={HomePage} exact/>
-                )}
+                )*/}
                 
                 <Route path="/contact" component={Contact} exact/>
                 <Route path="/bloodNeeded" component={BloodNeeded} exact/>
@@ -73,6 +73,10 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <Route path="/signUp" component={SignUp} exact/>
                 <Route path="/signIn" component={SignIn} exact/>
                 <Route path="/donatorHistory" component={ReturnDonatorHistory}/>
+                <Route path="/homePage" component={HomePage} exact/>
+                <Route path="/homePageWorker" component={WorkerHomePage} exact/>
+                <Route path="/homePageDonator" component={DonatorHomePage} exact/>
+                <Route path="/donationDetails/:donationId" component={DonationDetails} exact/> 
             </Switch>
         </StyledMain>
     

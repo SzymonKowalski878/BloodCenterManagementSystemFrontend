@@ -2,7 +2,7 @@ import React from 'react';
 import {useQuery} from 'react-query';
 import {donationApi} from '../api';
 import styled from '@emotion/styled';
-
+import {Link} from 'react-router-dom';
 const HistoryOfDonation = styled.div`
     display:flex;
     justify-content:center;
@@ -43,7 +43,7 @@ export const ReturnDonatorHistory:React.FC = () =>{
             {query.isSuccess?(
                 <>
                     {query.data.map((donation)=>{
-                        return<> <Result> <div></div>{`Donacja z dnia ${donation.donationDate?.getMonth()}, status ${donation.stage} `}<div>&nbsp;Sczegóły</div></Result></>
+                        return<> <Result> <div></div>{`Donacja z dnia ${donation.donationDate?.getDate()} ${donation.donationDate?.getMonth()+1} ${donation.donationDate?.getFullYear()}, status ${donation.stage} `}<div>&nbsp;<Link to={`/donationDetails/:${donation.id}`}>Sczegóły</Link></div></Result></>
                     })}
                 </>
             ):(

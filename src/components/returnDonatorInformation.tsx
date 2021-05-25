@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import {useQuery} from 'react-query';
-import {bloodDonatorApi} from '../api'
+import { useQuery } from 'react-query';
+import React from 'react';
+import {bloodDonatorApi} from '../api';
 
-interface Parameter{
-    id:number;
-}
+export const ReturnDonatorInformation = () =>{
+    const userId = localStorage.getItem("UserId");
 
-export const ReturnDonatorInformation:React.FC<Parameter> = (paramter)=>{
-
-    const [toDisplay,setToDisplay] = useState<string>();
-    
     const query = useQuery(
         "ReturnDonatorInformation",
-        ()=>bloodDonatorApi.apiBloodDonatorGetDonatorInformationPost({id:paramter.id}),
+        ()=>bloodDonatorApi.apiBloodDonatorGetDonatorInformationPost({id:parseInt(userId as string)}),
         {
             onSuccess:()=>{
-                console.log(query.data)
-                //nie wiem dlaczego to wyświetla w konsoli undefined po pierwszym renderze
-            },
-            refetchOnWindowFocus:false,
-
-        },
+                console.log(query.data);
+            }
+        }
     )
-    
-    
-    useEffect(()=>{
-        setToDisplay(`${query.data?.user?.firstName} ${query.data?.user?.surname} oddał ${query.data?.ammountOfBloodDonated} ml krwi`);
-    },[query.data])
-    
-    
-    return(
+
+    return (
         <>
-            <div>
-                {toDisplay}
-            </div>
+            {query.isSuccess?(
+                <>
+                    Imie: {query.data.user?.firstName}<br/>
+                    Nazwisko: {query.data.user?.surname}<br/>
+                    Email: {query.data.user?.email}<br/>
+                    Pesel: {query.data.pesel}<br/>
+                    Adres zamieszkania: {query.data.homeAdress}<br/>
+                    Numer telefonu: {query.data.phoneNumber}<br/>
+                    Grupa krwi: {query.data.bloodType?.bloodTypeName}<br/>
+                    Ilość oddanej krwi: {query.data.ammountOfBloodDonated}<br/>
+                </>
+            ):(
+                <>
+
+                </>
+            )}
         </>
     )
 }

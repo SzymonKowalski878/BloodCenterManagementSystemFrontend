@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode'
 import {TokenInterface} from '../interface/tokenInterface'
 import { BoxContainer, TopContainer, BackDrop, FormContainer, Input, Span, SubmitButton,HeaderConstainer, HeaderText, SmallText } from './common';
 import { Link, Redirect, useHistory } from 'react-router-dom';
+import { queryHelpers } from '@testing-library/dom';
 export const Login:React.FC =() =>{
 
     const [idState,setIdState] = React.useState("");
@@ -71,7 +72,19 @@ export const Login:React.FC =() =>{
                 {mutation.isSuccess?(
                     <>
                         {
-                            window.location.href="/homepage"
+                            localStorage.getItem("Role")==="Worker"?(
+                                <>
+                                    <Redirect to="/homePageWorker"/>
+                                </>
+                            ):localStorage.getItem("Role")==="Donator"?(
+                                <>
+                                    <Redirect to="/homePageDonator"/>
+                                </>
+                            ):(
+                                <>
+                                    <Redirect to="/homePage"/>
+                                </>
+                            )
                         }
                     </>
                 ):(
