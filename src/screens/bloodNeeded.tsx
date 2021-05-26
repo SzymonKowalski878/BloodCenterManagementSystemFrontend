@@ -37,7 +37,7 @@ export const BloodNeeded: React.FC = () => {
     return(
         <Article>
             <h2>Zapotrzebowanie na krew</h2>
-            <p><b>Stan na dzień 21.04.2021</b></p>
+            <p><b>Stan na dzień {new Date(Date.now()).toLocaleDateString().substring(0, 10)}</b></p>
             
             <ReturnBloodTypes/>
             

@@ -1,15 +1,16 @@
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import React, { ChangeEvent } from 'react'
 import { useMutation } from 'react-query';
 import {userApi} from '../api'
 import jwt_decode from 'jwt-decode'
 import {TokenInterface} from '../interface/tokenInterface'
 import { BoxContainer, TopContainer, BackDrop, FormContainer, Input, Span, SubmitButton,HeaderConstainer, HeaderText, SmallText } from './common';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { queryHelpers } from '@testing-library/dom';
 export const Login:React.FC =() =>{
 
+    const history= useHistory();
+
     const [idState,setIdState] = React.useState("");
-    const [isLogged, setIsLogged] = React.useState(false);
     const [passwordState,setPasswordState] = React.useState("");
 
     function checkIfParseInt(id:string){
@@ -47,6 +48,14 @@ export const Login:React.FC =() =>{
                 localStorage.setItem("Role",tokenData.Role);
                 localStorage.setItem("UserId",tokenData.unique_name);
                 localStorage.setItem("IsLoggedIn","true");
+                tokenData.Role=="Worker"?(
+                    history.push("/homePageWorker")
+                ):(tokenData.Role=="Donator"?(
+                    history.push("/homePageDonator")
+                ):(
+                    history.push("/homePage")
+                ))
+                history.go(0)
             }
         }
     )
@@ -55,7 +64,6 @@ export const Login:React.FC =() =>{
         mutation.mutate();
     }
     return (
-        
             <BoxContainer>
                 <TopContainer>
                     <BackDrop />
@@ -69,30 +77,6 @@ export const Login:React.FC =() =>{
                 </FormContainer>
                     <SubmitButton type="submit" onClick={()=>onSubmit()}>Zaloguj się</SubmitButton>
                     <Span>Nie masz konta? <Link to="/signUp" style={{textDecoration:'none',color:'rgb(255,35,0)'}}>Zarejestruj się!</Link> </Span>
-                {mutation.isSuccess?(
-                    <>
-                        {
-                            localStorage.getItem("Role")==="Worker"?(
-                                <>
-                                    <Redirect to="/homePageWorker"/>
-                                </>
-                            ):localStorage.getItem("Role")==="Donator"?(
-                                <>
-                                    <Redirect to="/homePageDonator"/>
-                                </>
-                            ):(
-                                <>
-                                    <Redirect to="/homePage"/>
-                                </>
-                            )
-                        }
-                    </>
-                ):(
-                    <>
-
-                    </>
-                )}  
             </BoxContainer>
-        
     )
 }

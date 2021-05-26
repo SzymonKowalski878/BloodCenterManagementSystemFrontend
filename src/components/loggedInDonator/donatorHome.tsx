@@ -2,7 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width:48em;
     @media only screen and (max-width: 414px) {
         width:4em;
@@ -12,35 +14,27 @@ const Container = styled.div`
     }
 `;
 
-const ChooseOption = styled.div`
-    display:flex;
-    justify-content:center;
-    align-items: flex-start;
-    position:relative;
-    top:-5em;
-`;
-
 const PanelOptions = styled.div`
     display:flex;
     flex-direction: row;
-    height:5em;   
-    position:relative;
-    top:-4em;
+    height:5em;
     min-width:47em;
     justify-content:center;
     align-items:center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     @media only screen and (max-width: 1308px) {
         flex-direction:column;
-        height:20em;
+        height:10em;
     }
     @media only screen and (max-width: 1024px) {
         flex-direction:column;
-        height:20em;
+        height:10em;
         min-width:6em;
     }
     @media only screen and (max-width: 414px) {
         flex-direction:column;
-        height:20em;
+        height:10em;
         min-width:4em;
     }
 `;
@@ -75,7 +69,7 @@ export const DonatorMain= () => {
 
     return(
         <Container>
-            <ChooseOption>Panel Użytkownika</ChooseOption>
+            Panel Użytkownika
             <PanelOptions>
                 <Option>Ustawienia konta</Option>
                 <Option onClick={()=>HandleHistory()}>Historia donacji</Option>
