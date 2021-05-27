@@ -15,6 +15,8 @@ import { ReturnDonatorHistory } from './ReturnDonatorHistory';
 import {DonationDetails} from '../screens/DonationDetails';
 import { PrivateRoute } from '../lib/PrivateRoute'
 import { LoginRoute } from '../lib/LoginRoute'
+import {PersonalDataSettings} from '../screens/loggedInDonator/PersonalDataSettings';
+
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
     min-height: 100vh;
@@ -49,6 +51,7 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <PrivateRoute path="/homePageDonator" component={DonatorHomePage} exact role='Donator'/>
                 <PrivateRoute path="/donationDetails/:donationId" component={DonationDetails} exact role='Donator'/> 
                 <Route path="/signOut" component={SignOut} exact/>
+                <Route path="/personalDataSettings" component={PersonalDataSettings} exact/>
             </Switch>
         </StyledMain>
     

@@ -16,7 +16,7 @@ export const ReturnDonatorInformation = () =>{
     )
 
     return (
-        <>
+        <div>
             {query.isSuccess?(
                 <>
                     Imie: {query.data.user?.firstName}<br/>
@@ -33,6 +33,6 @@ export const ReturnDonatorInformation = () =>{
 
                 </>
             )}
-        </>
+        </div>
     )
 }

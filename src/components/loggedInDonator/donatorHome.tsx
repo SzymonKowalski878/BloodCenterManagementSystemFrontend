@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-
+import {useHistory} from 'react-router-dom'
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -63,16 +63,14 @@ const Option = styled.div`
 
 export const DonatorMain= () => {
 
-    const HandleHistory = ()=>{
-        window.location.href="/donatorHistory";
-    }
+    const history = useHistory();
 
     return(
         <Container>
             Panel Użytkownika
             <PanelOptions>
-                <Option>Ustawienia konta</Option>
-                <Option onClick={()=>HandleHistory()}>Historia donacji</Option>
+                <Option onClick={()=>history.push("/personalDataSettings")}> Ustawienia konta</Option>
+                <Option onClick={()=>history.push("/donatorHistory")}>Historia donacji</Option>
             </PanelOptions>
         </Container>
     )
