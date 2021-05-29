@@ -13,7 +13,7 @@ export const ReturnDonationDetails:React.FC<{id:number}> =({id})=>{
         <>
            {query.isSuccess?(
                <>
-                {query.data.stage=="donation finished"?(
+                {query.data.stage=="donation finished" || query.data.stage=="qualified" ?(
                     <>
                         <div>Etap donacji: {query.data.stage}</div>
                         <div>Data donacji: {query.data.donationDate?.getDate()} {query.data.donationDate?.getMonth()+1} {query.data.donationDate?.getFullYear()}</div>
@@ -75,15 +75,71 @@ export const ReturnDonationDetails:React.FC<{id:number}> =({id})=>{
                         <>Data donacji: {query.data.donationDate?.getDate()} {query.data.donationDate?.getMonth()+1} {query.data.donationDate?.getFullYear()}</>
 
                     </>
+                ):query.data.stage=="blood examined"?(
+                    <>
+                    <div>Etap donacji: {query.data.stage}</div>
+                        <div>Data donacji: {query.data.donationDate?.getDate()} {query.data.donationDate?.getMonth()+1} {query.data.donationDate?.getFullYear()}</div>
+                        <div>
+                            <>
+                                HT: {query.data.resultOfExamination?.ht}<br/>
+                            </>
+                            <>
+                                LY: {query.data.resultOfExamination?.ly}<br/>
+                            </>
+                            <>
+                                MCH: {query.data.resultOfExamination?.mch}<br/>
+                            </>
+                            <>
+                                MCHC: {query.data.resultOfExamination?.mchc}<br/>
+                            </>
+                            <>
+                                MCV: {query.data.resultOfExamination?.mcv}<br/>
+                            </>
+                            <>
+                                MO: {query.data.resultOfExamination?.mo}<br/>
+                            </>
+                            <>
+                                NE: {query.data.resultOfExamination?.ne}<br/>
+                            </>
+                            <>
+                                PLT: {query.data.resultOfExamination?.plt}<br/>
+                            </>
+                            <>
+                                RBC: {query.data.resultOfExamination?.rbc}<br/>
+                            </>
+                            <>
+                                WBC: {query.data.resultOfExamination?.wbc}<br/>
+                            </>
+                            <>
+                                BA: {query.data.resultOfExamination?.ba}<br/>
+                            </>
+                            <>
+                                EO: {query.data.resultOfExamination?.eo}<br/>
+                            </>
+                            <>
+                                HB: {query.data.resultOfExamination?.hb}<br/>
+                            </>
+                        </div>
+                    </>
+                ):query.data.stage=="not qualified" || query.data.stage=="abandoned"?(
+                    <>
+                        <div>Etap donacji: {query.data.stage}</div>
+                        <>Data donacji: {query.data.donationDate?.getDate()} {query.data.donationDate?.getMonth()+1} {query.data.donationDate?.getFullYear()}</>
+                    </>
                 ):(
                     <>
+
                     </>
                 )}
                </>
-           ):(
+           ):query.isLoading?(
                 <>
-
+                    Ładowanie
                 </>
+           ):(
+               <>
+
+               </>
            )}
         </>
     )

@@ -1,6 +1,6 @@
-import { useQuery } from 'react-query';
-import React, { useState } from 'react';
-import {bloodDonatorApi} from '../api';
+import { useMutation, useQuery } from 'react-query';
+import React, { useState,ChangeEvent,useEffect} from 'react';
+import {bloodDonatorApi,userApi} from '../api';
 import styled from '@emotion/styled';
 
 const Form = styled.form`
@@ -73,26 +73,79 @@ const H2Design = styled.h2`
     border-bottom: 0.01em solid black;
 `;
 
-
 export const ReturnDonatorInformation = () =>{
     const userId = localStorage.getItem("UserId");
+
+    const [currentEmail,setCurrentEmail] = useState("");
+
+    const [currentHomeAdress,setCurrentHomeAdress]=useState("");
+
+    const [currentPhoneNumber,setCurrentPhoneNumber] = useState("");
+
+    const [password,setPassword] = useState("");
+    const [confirmPassword,setConfirmPassword]= useState("");
 
     const query = useQuery(
         "ReturnDonatorInformation",
         ()=>bloodDonatorApi.apiBloodDonatorGetDonatorInformationPost({id:parseInt(userId as string)}),
         {
-            onSuccess:()=>{
-                console.log(query.data);
-            }
+            refetchOnWindowFocus:false
         }
     )
-    const handleUpdate = () => {
 
-    }
     
+
+    const mutationPersonalData = useMutation( 
+        ()=>userApi.apiUserUpdateUserdataPost({id:2,phoneNumber:currentPhoneNumber,homeAdress:currentHomeAdress,email:currentEmail,password:""}),
+    )
+
+    const mutationPassword = useMutation(
+        ()=>userApi.apiUserUpdateUserdataPost({id:2,phoneNumber:"",homeAdress:"",email:"",password:password})
+    )
+
+
     const handlePassChange = () => {
+        password===confirmPassword?(
+            console.log(`${password} : ${confirmPassword}`),
+            mutationPassword.mutate()
+        ):(
+            <>
+
+            </>
+        )
 
     }
+
+    const updateEmailState= (event:ChangeEvent<HTMLInputElement>)=>{
+        console.log(event.target.value);
+        setCurrentEmail(event.target.value);
+    }
+
+    const updateHomeAdressState = (event:ChangeEvent<HTMLInputElement>)=>{
+        console.log(event.target.value);
+        setCurrentHomeAdress(event.target.value);
+    }
+
+    const updatePhoneNumber = (event:ChangeEvent<HTMLInputElement>)=>{
+        console.log(event.target.value);
+        setCurrentPhoneNumber(event.target.value);
+    }
+
+    const updatePassword = (event:ChangeEvent<HTMLInputElement>)=>{
+        console.log(event.target.value);
+        setPassword(event.target.value);
+    }
+
+    const updateConfirmPassword =(event:ChangeEvent<HTMLInputElement>)=>{
+        console.log(event.target.value);
+        setConfirmPassword(event.target.value);
+    }
+
+    useEffect(()=>{
+        setCurrentEmail(query.data?.user?.email as string);
+        setCurrentHomeAdress(query.data?.homeAdress as string); 
+        setCurrentPhoneNumber(query.data?.phoneNumber as string);
+    },[query.data])
 
     return (
         <div>
@@ -109,15 +162,23 @@ export const ReturnDonatorInformation = () =>{
                             <label>Pesel:</label>
                         </LabelBox>
                         <InputBox>
+                        {/*}
                             <input type="text" value={(query.data?.user?.firstName)?query.data.user.firstName:""} /><br/>
                             <input type="text" value={(query.data?.user?.surname)?query.data.user.surname:""} /><br/>
                             <input type="email" value={(query.data?.user?.email)?query.data.user.email:""} /><br/>
                             <input type="text" value={(query.data?.pesel)?query.data.pesel:""} /><br/>
                             <input type="text" value={(query.data.homeAdress)?query.data.homeAdress:""} /><br/>
                             <input type="text" value={(query.data?.phoneNumber)?query.data.phoneNumber:""} /><br/>
+                        */}
+                            <input type="text" value={query.data.user?.firstName as string}/>
+                            <input type="text" value={query.data.user?.surname as string}/>
+                            <input type="text" value={currentEmail} onChange={updateEmailState} />
+                            <input type="text" value={currentPhoneNumber} onChange={updatePhoneNumber}/>
+                            <input type="text" value={currentHomeAdress} onChange={updateHomeAdressState}/>
+                            <input type="text" value={query.data.pesel as string}/>
                         </InputBox>
                     </Form>
-                    <SubmitButton onClick={handleUpdate}>Aktualizuj dane</SubmitButton>
+                    <SubmitButton onClick={()=>mutationPersonalData.mutate()}>Aktualizuj dane</SubmitButton>
                     <BloodBox> 
                         <label>Grupa krwi:</label> {query.data.bloodType?.bloodTypeName}<br/>
                         <label>Ilość oddanej krwi:</label>{query.data.ammountOfBloodDonated}ml<br/>
@@ -131,15 +192,19 @@ export const ReturnDonatorInformation = () =>{
                             <label>Powtórz hasło:</label>
                         </LabelBox>
                         <InputBox>
-                            <input type="password" />
-                            <input type="password" />
+                            <input type="password" value={password} onChange={updatePassword}/>
+                            <input type="password" value={confirmPassword} onChange={updateConfirmPassword}/>
                         </InputBox>
                     </Form>
-                    <SubmitButton onClick={handlePassChange}>Zmień hasło</SubmitButton>
+                    <SubmitButton onClick={()=>handlePassChange()}>Zmień hasło</SubmitButton>
+                </>
+            ):query.isLoading?(
+                <>
+
                 </>
             ):(
                 <>
-
+                    <h1>Loading</h1>
                 </>
             )}
         </div>
