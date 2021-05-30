@@ -72,7 +72,24 @@ export const ReturnDonationDetails:React.FC<{id:number}> =({id})=>{
            <>
                <H2styled>Etap donacji: {stan}</H2styled>
                <H2styled>Data donacji: {query.data.donationDate?.toLocaleDateString().substring(0,10)}</H2styled>
-                {query.data.stage=="donation finished" || query.data.stage=="qualified" ?(
+               {
+                   query.data.stage=="not qualified"?(
+                    query.data.rejectionReason=="blood pressure"?(
+                        <H2styled>Powód odrzucenia: Ciśnienie krwi</H2styled>
+                    ): query.data.rejectionReason=="blood examination"?(
+                        <H2styled>Powód odrzucenia: Badanie krwi</H2styled>
+                    ):(
+                        <>
+
+                        </>
+                    )
+                   ):(
+                       <>
+
+                       </>
+                   )
+               }
+                {query.data.stage=="donation finished" || query.data.stage=="qualified" || (query.data.stage=="abandoned" && query.data.rejectionReason=="qualified" ) || (query.data.stage=="not qualified" && query.data.rejectionReason=="blood pressure")?(
                     <>
                         <table>
                             <tr>
@@ -129,7 +146,7 @@ export const ReturnDonationDetails:React.FC<{id:number}> =({id})=>{
                         </table>
                         <PrintButton onClick={window.print}>Drukuj</PrintButton>
                     </>
-                ):query.data.stage=="blood examined" || query.data.stage=="abandoned"?(
+                ):query.data.stage=="blood examined" || (query.data.stage=="abandoned" && query.data.rejectionReason=="blood examined") || (query.data.stage=="not qualified" && query.data.rejectionReason=="blood examination")?(
                     <>
                         <table>
                             <tr>
