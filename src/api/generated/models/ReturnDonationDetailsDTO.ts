@@ -46,6 +46,12 @@ export interface ReturnDonationDetailsDTO {
     donationDate?: Date;
     /**
      * 
+     * @type {string}
+     * @memberof ReturnDonationDetailsDTO
+     */
+    rejectionReason?: string | null;
+    /**
+     * 
      * @type {ResultOfExaminationWithoutDonatorDTO}
      * @memberof ReturnDonationDetailsDTO
      */
@@ -65,6 +71,7 @@ export function ReturnDonationDetailsDTOFromJSONTyped(json: any, ignoreDiscrimin
         'id': !exists(json, 'id') ? undefined : json['id'],
         'stage': !exists(json, 'stage') ? undefined : json['stage'],
         'donationDate': !exists(json, 'donationDate') ? undefined : (new Date(json['donationDate'])),
+        'rejectionReason': !exists(json, 'rejectionReason') ? undefined : json['rejectionReason'],
         'resultOfExamination': !exists(json, 'resultOfExamination') ? undefined : ResultOfExaminationWithoutDonatorDTOFromJSON(json['resultOfExamination']),
     };
 }
@@ -81,6 +88,7 @@ export function ReturnDonationDetailsDTOToJSON(value?: ReturnDonationDetailsDTO 
         'id': value.id,
         'stage': value.stage,
         'donationDate': value.donationDate === undefined ? undefined : (value.donationDate.toISOString()),
+        'rejectionReason': value.rejectionReason,
         'resultOfExamination': ResultOfExaminationWithoutDonatorDTOToJSON(value.resultOfExamination),
     };
 }

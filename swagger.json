@@ -1888,6 +1888,10 @@
             "type": "string",
             "format": "date-time"
           },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
+          },
           "resultOfExamination": {
             "$ref": "#/components/schemas/ResultOfExaminationWithoutDonatorDTO"
           }
