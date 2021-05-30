@@ -13,9 +13,11 @@ models/AddResultOfExaminationDTO.ts
 models/AddUserDTO.ts
 models/BloodTypeIdDTO.ts
 models/BloodTypeModel.ts
+models/BloodTypeName.ts
 models/BloodTypeNameDTO.ts
 models/ErrorMessage.ts
 models/IdHolder.ts
+models/PeselHolder.ts
 models/ResultOfExaminationWithoutDonatorDTO.ts
 models/ReturnAddedUnitDTO.ts
 models/ReturnDonationDTO.ts

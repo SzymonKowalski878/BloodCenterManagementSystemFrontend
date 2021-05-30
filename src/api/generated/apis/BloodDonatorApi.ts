@@ -21,10 +21,17 @@ import {
     ErrorMessage,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
+    PeselHolder,
+    PeselHolderFromJSON,
+    PeselHolderToJSON,
     ReturnDonatorInformationDTO,
     ReturnDonatorInformationDTOFromJSON,
     ReturnDonatorInformationDTOToJSON,
 } from '../models';
+
+export interface ApiBloodDonatorGetDonatorInformationByPeselPostRequest {
+    peselHolder?: PeselHolder;
+}
 
 export interface ApiBloodDonatorGetDonatorInformationPostRequest {
     bloodTypeIdDTO?: BloodTypeIdDTO;
@@ -34,6 +41,36 @@ export interface ApiBloodDonatorGetDonatorInformationPostRequest {
  * 
  */
 export class BloodDonatorApi extends runtime.BaseAPI {
+
+    /**
+     */
+    async apiBloodDonatorGetDonatorInformationByPeselPostRaw(requestParameters: ApiBloodDonatorGetDonatorInformationByPeselPostRequest): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = this.configuration.apiKey("Authorization"); // Bearer authentication
+        }
+
+        const response = await this.request({
+            path: `/api/BloodDonator/GetDonatorInformationByPesel`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PeselHolderToJSON(requestParameters.peselHolder),
+        });
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async apiBloodDonatorGetDonatorInformationByPeselPost(peselHolder?: PeselHolder): Promise<void> {
+        await this.apiBloodDonatorGetDonatorInformationByPeselPostRaw({ peselHolder: peselHolder });
+    }
 
     /**
      */

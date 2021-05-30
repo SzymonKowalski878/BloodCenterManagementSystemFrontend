@@ -92,6 +92,34 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      */
+    async apiUserRegenerateTokenPostRaw(): Promise<runtime.ApiResponse<UserToken>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = this.configuration.apiKey("Authorization"); // Bearer authentication
+        }
+
+        const response = await this.request({
+            path: `/api/User/RegenerateToken`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserTokenFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiUserRegenerateTokenPost(): Promise<UserToken> {
+        const response = await this.apiUserRegenerateTokenPostRaw();
+        return await response.value();
+    }
+
+    /**
+     */
     async apiUserRegisterAccountPostRaw(requestParameters: ApiUserRegisterAccountPostRequest): Promise<runtime.ApiResponse<UserEmailAndPassword>> {
         const queryParameters: any = {};
 

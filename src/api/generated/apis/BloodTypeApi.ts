@@ -21,6 +21,9 @@ import {
     BloodTypeModel,
     BloodTypeModelFromJSON,
     BloodTypeModelToJSON,
+    BloodTypeName,
+    BloodTypeNameFromJSON,
+    BloodTypeNameToJSON,
     ErrorMessage,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
@@ -28,6 +31,10 @@ import {
 
 export interface ApiBloodTypeReturnBloodTypeByIdPostRequest {
     bloodTypeIdDTO?: BloodTypeIdDTO;
+}
+
+export interface ApiBloodTypeReturnBloodTypeByNamePostRequest {
+    bloodTypeName?: BloodTypeName;
 }
 
 /**
@@ -91,6 +98,37 @@ export class BloodTypeApi extends runtime.BaseAPI {
      */
     async apiBloodTypeReturnBloodTypeByIdPost(bloodTypeIdDTO?: BloodTypeIdDTO): Promise<BloodTypeModel> {
         const response = await this.apiBloodTypeReturnBloodTypeByIdPostRaw({ bloodTypeIdDTO: bloodTypeIdDTO });
+        return await response.value();
+    }
+
+    /**
+     */
+    async apiBloodTypeReturnBloodTypeByNamePostRaw(requestParameters: ApiBloodTypeReturnBloodTypeByNamePostRequest): Promise<runtime.ApiResponse<BloodTypeModel>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = this.configuration.apiKey("Authorization"); // Bearer authentication
+        }
+
+        const response = await this.request({
+            path: `/api/BloodType/ReturnBloodTypeByName`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BloodTypeNameToJSON(requestParameters.bloodTypeName),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BloodTypeModelFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async apiBloodTypeReturnBloodTypeByNamePost(bloodTypeName?: BloodTypeName): Promise<BloodTypeModel> {
+        const response = await this.apiBloodTypeReturnBloodTypeByNamePostRaw({ bloodTypeName: bloodTypeName });
         return await response.value();
     }
 

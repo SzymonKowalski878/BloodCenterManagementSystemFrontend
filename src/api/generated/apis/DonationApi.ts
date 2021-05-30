@@ -158,7 +158,7 @@ export class DonationApi extends runtime.BaseAPI {
 
     /**
      */
-    async apiDonationReturnQueuePostRaw(requestParameters: ApiDonationReturnQueuePostRequest): Promise<runtime.ApiResponse<ReturnDonationInQueueDTO>> {
+    async apiDonationReturnQueuePostRaw(requestParameters: ApiDonationReturnQueuePostRequest): Promise<runtime.ApiResponse<Array<ReturnDonationInQueueDTO>>> {
         const queryParameters: any = {};
 
         if (requestParameters.stage !== undefined) {
@@ -178,12 +178,12 @@ export class DonationApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReturnDonationInQueueDTOFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ReturnDonationInQueueDTOFromJSON));
     }
 
     /**
      */
-    async apiDonationReturnQueuePost(stage?: string | null): Promise<ReturnDonationInQueueDTO> {
+    async apiDonationReturnQueuePost(stage?: string | null): Promise<Array<ReturnDonationInQueueDTO>> {
         const response = await this.apiDonationReturnQueuePostRaw({ stage: stage });
         return await response.value();
     }
