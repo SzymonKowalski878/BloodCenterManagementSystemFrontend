@@ -31,11 +31,12 @@ const PrintButton = styled.button`
     width:10em;
     height:3.5em;
     color:#fff;
-    margin-top:0.4em;
+    margin-top:2em;
     margin-bottom:1em;
     font-size:1.5vh;
     font-weight:600;
     border:none;
+    margin-left:25vw;
     border-radius:10px 10px 10px 10px;
     cursor:pointer;
     transition:all,240ms ease-in-out;
