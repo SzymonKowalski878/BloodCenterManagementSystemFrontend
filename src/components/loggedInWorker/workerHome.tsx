@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {useHistory} from 'react-router-dom';
 
 const Container = styled.div`
     min-height: 100vh;
@@ -67,8 +68,10 @@ const OfficePosition = styled.div`
         width:14em;
     }
 `;
+
 export const WorkerMain =()=>{
 
+    const history = useHistory();
     //const role = localStorage.getItem("Role");
     const role = "Worker"
     return (
@@ -80,7 +83,7 @@ export const WorkerMain =()=>{
                         <OfficePosition>Recepcja</OfficePosition>
                         <OfficePosition>Stanowisko badania krwi</OfficePosition>
                         <OfficePosition>Stanowisko lekarza</OfficePosition>
-                        <OfficePosition>Stanowisko pobrania krwi</OfficePosition>
+                        <OfficePosition onClick={()=>history.push("/bloodDonationQueue")}>Stanowisko pobrania krwi</OfficePosition>
                     </OfficeContainer>
                 </>
             ):(

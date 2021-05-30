@@ -16,6 +16,7 @@ import {DonationDetails} from '../screens/DonationDetails';
 import { PrivateRoute } from '../lib/PrivateRoute'
 import { LoginRoute } from '../lib/LoginRoute'
 import {PersonalDataSettings} from '../screens/loggedInDonator/PersonalDataSettings';
+import { BloodDonationQueue } from '../screens/BloodDonationQueue';
 
 export const StyledMain = styled.div`
     width: calc(100vw-100px);
@@ -52,6 +53,7 @@ export const Main: React.FC<Props> = (props: Props) => {
                 <PrivateRoute path="/donationDetails/:donationId" component={DonationDetails} exact role='Donator'/> 
                 <Route path="/signOut" component={SignOut} exact/>
                 <Route path="/personalDataSettings" component={PersonalDataSettings} exact/>
+                <Route path="/bloodDonationQueue" component={BloodDonationQueue} exact/>
             </Switch>
         </StyledMain>
     
