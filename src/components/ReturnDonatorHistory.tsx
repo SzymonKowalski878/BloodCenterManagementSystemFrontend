@@ -15,7 +15,13 @@ const HistoryOfDonation = styled.div`
 const Result = styled.div`
     display:flex;
     justify-content:center;
-    flex-direction:row;
+`;
+
+const Results = styled.div`
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    min-height:20vh;
 `;
 
 export const ReturnDonatorHistory:React.FC = () =>{
@@ -38,17 +44,42 @@ export const ReturnDonatorHistory:React.FC = () =>{
         }
     )
 
-    return (
+    return (<>
+        
         <HistoryOfDonation>
+        <h2>Historia twoich donacji</h2>
+        <Results>
             {query.isSuccess?(
                 <>
                     {query.data.map((donation)=>{
-                        return<> <Result> <div></div>{`Donacja z dnia ${donation.donationDate?.getDate()} ${donation.donationDate?.getMonth()+1} ${donation.donationDate?.getFullYear()}, status ${donation.stage} `}<div>&nbsp;<Link to={`/donationDetails/:${donation.id}`}>Sczegóły</Link></div></Result></>
+                        let stan
+                        switch(donation.stage){
+                            case "registered": stan = "donacja zarejestrowana"; break;
+                            case "blood examinated": stan = "krew zbadana"; break;
+                            case "qualified": stan = "zakwalifikowano"; break;
+                            case "not qualified": stan = "nie zakwalifikowano"; break;
+                            case "abandoned": stan = "nie przystąpiono"; break;
+                            case "donation finished": stan = "donacja zakończona"; break;
+                        }
+                        return<> 
+                        <Result> 
+                            <details>
+                                <summary>
+                                    {`Donacja z dnia ${donation.donationDate?.toLocaleDateString().substring(0,10)}`} 
+                                </summary> 
+                                {`Status ${stan}`}
+                                <br/>
+                                <Link to={`/donationDetails/:${donation.id}`}>Sczegóły</Link>
+                            </details>
+                        </Result>
+                        </>
                     })}
                 </>
-            ):(
-                <h1>Nie</h1>
+            ):(query.isLoading?(<h1>Ładowanie...</h1>):(
+                <h1>Błąd</h1>)
             )}
+        </Results>
         </HistoryOfDonation>
+        </>
     )
 }

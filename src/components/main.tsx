@@ -27,6 +27,10 @@ export const StyledMain = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    @media print {
+        width:80vw;
+        height:80vh;
+    }
 `;
 
 interface Props{

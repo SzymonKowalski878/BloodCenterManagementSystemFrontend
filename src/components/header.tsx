@@ -13,6 +13,9 @@ const Head = styled.nav`
     justify-content:space-between;
     align-items:center;
     font-size:0.8rem;
+    @media print{
+        display:none;
+    }
 `;
 const Navlogo = styled.h1`
     color: #fff;

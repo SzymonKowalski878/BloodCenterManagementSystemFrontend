@@ -11,6 +11,9 @@ const StyledFooter = styled.footer`
     justify-content:center;
     align-items:center;
     color:white;
+    @media print{
+        display:none;
+    }
 `;
 
 interface Props{

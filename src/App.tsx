@@ -12,7 +12,11 @@ const Content = styled.div`
     grid-template-areas:
     "header"
     "main"
-    "footer";       
+    "footer";
+    @media print {
+      max-width: 99%;
+      max-height: 99%;
+    }     
 `;
 
 const queryClient = new QueryClient();
